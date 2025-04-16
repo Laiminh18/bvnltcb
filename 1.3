@@ -1,0 +1,34 @@
+#include <stdio.h>
+
+int main() {
+  int so1, so2;
+  int tong, hieu, tich, thuong;
+
+  // Nhập hai số nguyên từ người dùng
+  printf("Nhap vao so nguyen thu nhat: ");
+  scanf("%d", &so1);
+
+  printf("Nhap vao so nguyen thu hai: ");
+  scanf("%d", &so2);
+
+  // Thực hiện các phép toán
+  tong = so1 + so2;
+  hieu = so1 - so2;
+  tich = so1 * so2;
+
+  // Chú ý: Phép chia số nguyên sẽ làm tròn xuống
+  if (so2 != 0) {
+    thuong = so1 / so2;
+  } else {
+    printf("Khong the chia cho 0.\n");
+    return 1; // Thoát chương trình với mã lỗi
+  }
+
+  // In ra kết quả
+  printf("Tong: %d + %d = %d\n", so1, so2, tong);
+  printf("Hieu: %d - %d = %d\n", so1, so2, hieu);
+  printf("Tich: %d * %d = %d\n", so1, so2, tich);
+  printf("Thuong: %d / %d = %d\n", so1, so2, thuong);
+
+  return 0;
+}
