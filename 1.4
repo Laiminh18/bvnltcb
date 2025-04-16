@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <math.h> 
+
+int main() {
+  double banKinh;
+  double dienTich, theTich;
+
+  
+  printf("Nhap vao ban kinh hinh cau: ");
+  scanf("%lf", &banKinh);
+
+  
+  dienTich = 4 * M_PI * banKinh * banKinh; // Hoặc 4 * M_PI * pow(banKinh, 2);
+
+ 
+  theTich = (4.0 / 3.0) * M_PI * banKinh * banKinh * banKinh; // Hoặc (4.0 / 3.0) * M_PI * pow(banKinh, 3);
+
+  
+  printf("Dien tich be mat hinh cau la: %.2lf\n", dienTich);
+  printf("The tich hinh cau la: %.2lf\n", theTich);
+
+  return 0;
+}
