@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+int main() {
+  int ngay, thang, nam;
+
+  // Nhập ngày, tháng, năm từ người dùng
+  printf("Nhap vao ngay: ");
+  scanf("%d", &ngay);
+
+  printf("Nhap vao thang: ");
+  scanf("%d", &thang);
+
+  printf("Nhap vao nam: ");
+  scanf("%d", &nam);
+
+  // In ra màn hình theo định dạng "dd/mm/yyyy"
+  printf("Ngay da nhap: %02d/%02d/%d\n", ngay, thang, nam);
+
+  return 0;
+}
