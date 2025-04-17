@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int main() {
+  int n, i;
+  float sum = 0.0;
+
+  printf("Nhap gia tri N: ");
+  scanf("%d", &n);
+
+  if (n <= 0) {
+    printf("N phai la mot so nguyen duong.\n");
+    return 1; // Thoat chuong trinh voi ma loi
+  }
+
+  // Sử dụng vòng lặp for để tính tổng
+  for (i = 1; i <= n; i++) {
+    sum += (float)1 / i; // Ép kiểu 1 thành float để thực hiện phép chia số thực
+  }
+
+  printf("Gia tri cua S la: %.4f\n", sum);
+
+  return 0;
+}
