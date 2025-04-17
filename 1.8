@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+  float a, b, c;
+
+  printf("Nhap do dai canh a: ");
+  scanf("%f", &a);
+
+  printf("Nhap do dai canh b: ");
+  scanf("%f", &b);
+
+  printf("Nhap do dai canh c: ");
+  scanf("%f", &c);
+
+  // Kiểm tra điều kiện tạo thành tam giác
+  if (a + b > c && a + c > b && b + c > a) {
+    printf("Ba canh tren tao thanh mot tam giac.\n");
+
+    // Kiểm tra loại tam giác
+    if (a == b && b == c) {
+      printf("Day la tam giac deu.\n");
+    } else if (a == b || a == c || b == c) {
+      printf("Day la tam giac can.\n");
+      if ((a * a == b * b + c * c) || (b * b == a * a + c * c) || (c * c == a * a + b * b)) {
+        printf("Va la tam giac vuong can.\n");
+      }
+    } else if ((a * a == b * b + c * c) || (b * b == a * a + c * c) || (c * c == a * a + b * b)) {
+      printf("Day la tam giac vuong.\n");
+    } else {
+      printf("Day la tam giac thuong.\n");
+    }
+
+    // Tính chu vi
+    float chuVi = a + b + c;
+    printf("Chu vi tam giac la: %.2f\n", chuVi);
+
+    // Tính diện tích (theo công thức Heron)
+    float p = chuVi / 2;
+    float dienTich = sqrt(p * (p - a) * (p - b) * (p - c));
+    printf("Dien tich tam giac la: %.2f\n", dienTich);
+
+  } else {
+    printf("Ba canh tren khong tao thanh mot tam giac.\n");
+  }
+
+  return 0;
+}
