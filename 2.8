@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int main() {
+  int n, i;
+  long long factorial = 1; // Sử dụng long long để tránh tràn số cho n lớn
+
+  printf("Nhap mot so nguyen khong am n: ");
+  scanf("%d", &n);
+
+  if (n < 0) {
+    printf("Giai thua khong duoc dinh nghia cho so am.\n");
+    return 1; // Thoat chuong trinh voi ma loi
+  } else if (n == 0) {
+    printf("Giai thua cua 0 la 1.\n");
+  } else {
+    // Sử dụng vòng lặp for để tính giai thừa
+    for (i = 1; i <= n; i++) {
+      factorial *= i; // factorial = factorial * i;
+    }
+    printf("Giai thua cua %d la: %lld\n", n, factorial);
+  }
+
+  return 0;
+}
