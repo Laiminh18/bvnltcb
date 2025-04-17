@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int main() {
+  float diemTB;
+
+  printf("Nhap diem trung binh: ");
+  scanf("%f", &diemTB);
+
+  if (diemTB < 5) {
+    printf("Xep loai: Yeu\n");
+  } else if (diemTB < 7) {
+    printf("Xep loai: Trung Binh\n");
+  } else if (diemTB < 8) {
+    printf("Xep loai: Kha\n");
+  } else if (diemTB < 9) {
+    printf("Xep loai: Gioi\n");
+  } else {
+    printf("Xep loai: Xuat Sac\n");
+  }
+
+  return 0;
+}
