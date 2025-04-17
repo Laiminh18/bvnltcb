@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+int main() {
+  int n, i;
+
+  printf("Nhap mot so nguyen duong n: ");
+  scanf("%d", &n);
+
+  if (n <= 0) {
+    printf("Vui long nhap mot so nguyen duong.\n");
+    return 1; // Thoat chuong trinh voi ma loi
+  }
+
+  printf("Cac uoc cua %d la: ", n);
+
+  // Sử dụng vòng lặp for để tìm các ước
+  for (i = 1; i <= n; i++) {
+    if (n % i == 0) {
+      printf("%d ", i); // In ước số nếu n chia hết cho i
+    }
+  }
+
+  printf("\n"); // In một dòng mới ở cuối
+
+  return 0;
+}
