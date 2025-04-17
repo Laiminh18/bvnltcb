@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+// Hàm tính giai thừa của một số nguyên không âm
+long long factorial(int n) {
+  long long fact = 1;
+  for (int i = 1; i <= n; i++) {
+    fact *= i;
+  }
+  return fact;
+}
+
+int main() {
+  int n, i;
+  double sum = 0.0;
+
+  printf("Nhap mot so nguyen khong am n: ");
+  scanf("%d", &n);
+
+  if (n < 0) {
+    printf("n phai la mot so nguyen khong am.\n");
+    return 1; // Thoat chuong trinh voi ma loi
+  }
+
+  // Sử dụng vòng lặp for để tính tổng
+  for (i = 1; i <= n; i++) {
+    sum += 1.0 / factorial(i); // Tính 1/i! và cộng vào tổng
+  }
+
+  printf("Gia tri cua S la: %.6f\n", sum);
+
+  return 0;
+}
