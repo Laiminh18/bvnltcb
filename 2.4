@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+int main() {
+  int i, sum = 0;
+
+  printf("Tong cac so le tu 1 den 100 la:\n");
+
+  // Sử dụng vòng lặp for để duyệt các số từ 1 đến 100
+  for (i = 1; i <= 100; i++) {
+    // Kiểm tra xem số hiện tại có phải là số lẻ hay không
+    if (i % 2 != 0) {
+      sum += i; // Cộng số lẻ vào biến sum
+    }
+  }
+
+  printf("%d\n", sum); // In ra tổng các số lẻ
+
+  return 0;
+}
