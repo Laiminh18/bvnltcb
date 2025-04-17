@@ -1,0 +1,18 @@
+#include <stdio.h>
+
+int main() {
+  int i, num, sum = 0;
+
+  printf("Nhap vao 10 so nguyen bat ky:\n");
+
+  // Sử dụng vòng lặp for để nhập và tính tổng 10 số
+  for (i = 0; i < 10; i++) {
+    printf("Nhap so thu %d: ", i + 1);
+    scanf("%d", &num);
+    sum += num; // Cộng số vừa nhập vào biến sum
+  }
+
+  printf("Tong cua 10 so da nhap la: %d\n", sum);
+
+  return 0;
+}
