@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main() {
+    // Khai báo mảng số nguyên có 10 phần tử
+    int mangSoNguyen[10];
+
+    // Gán giá trị cho các phần tử của mảng (ví dụ)
+    mangSoNguyen[0] = 10;
+    mangSoNguyen[1] = 5;
+    mangSoNguyen[2] = 20;
+    mangSoNguyen[3] = 15;
+    mangSoNguyen[4] = 25;
+    mangSoNguyen[5] = 1;
+    mangSoNguyen[6] = 8;
+    mangSoNguyen[7] = 12;
+    mangSoNguyen[8] = 3;
+    mangSoNguyen[9] = 18;
+
+    // In mảng ra màn hình theo hàng ngang
+    printf("Cac phan tu cua mang la: ");
+    for (int i = 0; i < 10; i++) {
+        printf("%d ", mangSoNguyen[i]);
+    }
+    printf("\n"); // In dấu xuống dòng ở cuối
+
+    return 0;
+}
