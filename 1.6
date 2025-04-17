@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+int main() {
+  float a, b, c, d, e, f, det, x, y;
+
+  printf("Nhap he so a: ");
+  scanf("%f", &a);
+
+  printf("Nhap he so b: ");
+  scanf("%f", &b);
+
+  printf("Nhap he so c: ");
+  scanf("%f", &c);
+
+  printf("Nhap he so d: ");
+  scanf("%f", &d);
+
+  printf("Nhap he so e: ");
+  scanf("%f", &e);
+
+  printf("Nhap he so f: ");
+  scanf("%f", &f);
+
+  det = a * e - b * d;
+
+  if (det == 0) {
+    if ((a * f - c * d) == 0 && (b * f - c * e) == 0) {
+      printf("He phuong trinh co vo so nghiem.\n");
+    } else {
+      printf("He phuong trinh vo nghiem.\n");
+    }
+  } else {
+    x = (c * e - b * f) / det;
+    y = (a * f - c * d) / det;
+    printf("He phuong trinh co nghiem duy nhat:\n");
+    printf("x = %.2f\n", x);
+    printf("y = %.2f\n", y);
+  }
+
+  return 0;
+}
