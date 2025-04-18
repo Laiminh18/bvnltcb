@@ -1,0 +1,94 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n1, n2, n3;
+    int *arr1, *arr2, *mergedArr;
+    int i = 0, j = 0, k = 0;
+
+    // Nhập kích thước mảng 1
+    printf("Nhap kich thuoc mang thu nhat (da sap xep tang dan): ");
+    scanf("%d", &n1);
+
+    // Cấp phát bộ nhớ cho mảng 1
+    arr1 = (int *)malloc(n1 * sizeof(int));
+    if (arr1 == NULL) {
+        printf("Loi cap phat bo nho cho mang 1!\n");
+        return 1;
+    }
+
+    // Nhập các phần tử của mảng 1 (giả sử đã được sắp xếp tăng dần)
+    printf("Nhap cac phan tu cua mang thu nhat (tang dan):\n");
+    for (i = 0; i < n1; i++) {
+        printf("Phan tu %d: ", i + 1);
+        scanf("%d", &arr1[i]);
+    }
+
+    // Nhập kích thước mảng 2
+    printf("\nNhap kich thuoc mang thu hai (da sap xep tang dan): ");
+    scanf("%d", &n2);
+
+    // Cấp phát bộ nhớ cho mảng 2
+    arr2 = (int *)malloc(n2 * sizeof(int));
+    if (arr2 == NULL) {
+        printf("Loi cap phat bo nho cho mang 2!\n");
+        free(arr1);
+        return 1;
+    }
+
+    // Nhập các phần tử của mảng 2 (giả sử đã được sắp xếp tăng dần)
+    printf("Nhap cac phan tu cua mang thu hai (tang dan):\n");
+    for (i = 0; i < n2; i++) {
+        printf("Phan tu %d: ", i + 1);
+        scanf("%d", &arr2[i]);
+    }
+
+    // Kích thước mảng kết quả
+    n3 = n1 + n2;
+
+    // Cấp phát bộ nhớ cho mảng kết quả
+    mergedArr = (int *)malloc(n3 * sizeof(int));
+    if (mergedArr == NULL) {
+        printf("Loi cap phat bo nho cho mang ket qua!\n");
+        free(arr1);
+        free(arr2);
+        return 1;
+    }
+
+    // Gộp hai mảng đã sắp xếp
+    i = 0; // Chỉ số cho mảng 1
+    j = 0; // Chỉ số cho mảng 2
+    k = 0; // Chỉ số cho mảng kết quả
+
+    while (i < n1 && j < n2) {
+        if (arr1[i] < arr2[j]) {
+            mergedArr[k++] = arr1[i++];
+        } else {
+            mergedArr[k++] = arr2[j++];
+        }
+    }
+
+    // Sao chép các phần tử còn lại của mảng 1 (nếu có)
+    while (i < n1) {
+        mergedArr[k++] = arr1[i++];
+    }
+
+    // Sao chép các phần tử còn lại của mảng 2 (nếu có)
+    while (j < n2) {
+        mergedArr[k++] = arr2[j++];
+    }
+
+    // In mảng kết quả đã được sắp xếp
+    printf("\nMang sau khi ghep va sap xep (tang dan):\n");
+    for (i = 0; i < n3; i++) {
+        printf("%d ", mergedArr[i]);
+    }
+    printf("\n");
+
+    // Giải phóng bộ nhớ
+    free(arr1);
+    free(arr2);
+    free(mergedArr);
+
+    return 0;
+}
