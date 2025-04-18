@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <limits.h> // Thư viện định nghĩa các giới hạn của kiểu dữ liệu
+
+void timMinMax(int arr[], int size, int *min, int *max) {
+    // Kiểm tra nếu mảng rỗng
+    if (size <= 0) {
+        printf("Mang rong.\n");
+        return;
+    }
+
+    // Khởi tạo giá trị min và max ban đầu bằng phần tử đầu tiên của mảng
+    *min = arr[0];
+    *max = arr[0];
+
+    // Duyệt qua các phần tử còn lại của mảng
+    for (int i = 1; i < size; i++) {
+        // Nếu phần tử hiện tại nhỏ hơn giá trị min hiện tại, cập nhật min
+        if (arr[i] < *min) {
+            *min = arr[i];
+        }
+
+        // Nếu phần tử hiện tại lớn hơn giá trị max hiện tại, cập nhật max
+        if (arr[i] > *max) {
+            *max = arr[i];
+        }
+    }
+}
+
+int main() {
+    int mangSoNguyen[] = {15, 8, 22, 3, 17, 10, 28, 5};
+    int kichThuoc = sizeof(mangSoNguyen) / sizeof(mangSoNguyen[0]);
+    int giaTriNhoNhat, giaTriLonNhat;
+
+    // Gọi hàm timMinMax để tìm giá trị nhỏ nhất và lớn nhất
+    timMinMax(mangSoNguyen, kichThuoc, &giaTriNhoNhat, &giaTriLonNhat);
+
+    printf("Mang da cho la: ");
+    for (int i = 0; i < kichThuoc; i++) {
+        printf("%d ", mangSoNguyen[i]);
+    }
+    printf("\n");
+
+    printf("Gia tri nho nhat trong mang la: %d\n", giaTriNhoNhat);
+    printf("Gia tri lon nhat trong mang la: %d\n", giaTriLonNhat);
+
+    return 0;
+}
