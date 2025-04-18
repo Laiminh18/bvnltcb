@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+// Hàm đệ quy tính n!
+long long tinhGiaiThua(int n) {
+  // Trường hợp cơ sở: 0! = 1
+  if (n == 0) {
+    return 1;
+  } else if (n < 0) {
+    printf("Khong the tinh giai thua cho so am.\n");
+    return -1; // Hoặc một giá trị báo lỗi khác
+  } else {
+    // Bước đệ quy: n! = n * (n-1)!
+    return n * tinhGiaiThua(n - 1);
+  }
+}
+
+int main() {
+  int num;
+
+  printf("Nhap mot so nguyen khong am de tinh giai thua: ");
+  scanf("%d", &num);
+
+  long long ketQua = tinhGiaiThua(num);
+
+  if (ketQua != -1) {
+    printf("%d! = %lld\n", num, ketQua);
+  }
+
+  return 0;
+}
