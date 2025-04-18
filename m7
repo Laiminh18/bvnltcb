@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Hàm sắp xếp mảng theo thứ tự tăng dần (sử dụng thuật toán Bubble Sort)
+void sapXepTangDan(int *arr, int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                // Hoán đổi giá trị của arr[j] và arr[j + 1]
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    int n;
+    int *mangSoNguyen;
+
+    // Nhập kích thước của mảng
+    printf("Nhap so luong phan tu cua mang: ");
+    scanf("%d", &n);
+
+    // Cấp phát động bộ nhớ cho mảng
+    mangSoNguyen = (int *)malloc(n * sizeof(int));
+
+    // Kiểm tra cấp phát bộ nhớ thành công hay không
+    if (mangSoNguyen == NULL) {
+        printf("Loi cap phat bo nho!\n");
+        return 1;
+    }
+
+    // Nhập các phần tử của mảng
+    printf("Nhap cac phan tu cua mang:\n");
+    for (int i = 0; i < n; i++) {
+        printf("Phan tu thu %d: ", i + 1);
+        scanf("%d", &mangSoNguyen[i]);
+    }
+
+    // Sắp xếp mảng theo thứ tự tăng dần
+    sapXepTangDan(mangSoNguyen, n);
+
+    // In mảng sau khi sắp xếp
+    printf("\nMang sau khi sap xep theo thu tu tang dan:\n");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", mangSoNguyen[i]);
+    }
+    printf("\n");
+
+    // Giải phóng bộ nhớ
+    free(mangSoNguyen);
+
+    return 0;
+}
