@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+void hoanDoi(int *ptrA, int *ptrB) {
+    int temp;
+
+    // Gán giá trị của biến mà ptrA trỏ tới cho biến tạm temp
+    temp = *ptrA;
+
+    // Gán giá trị của biến mà ptrB trỏ tới cho biến mà ptrA trỏ tới
+    *ptrA = *ptrB;
+
+    // Gán giá trị của biến tạm temp cho biến mà ptrB trỏ tới
+    *ptrB = temp;
+}
+
+int main() {
+    int a, b;
+
+    printf("Nhap gia tri cho a: ");
+    scanf("%d", &a);
+
+    printf("Nhap gia tri cho b: ");
+    scanf("%d", &b);
+
+    printf("Truoc khi hoan doi: a = %d, b = %d\n", a, b);
+
+    // Gọi hàm hoanDoi, truyền địa chỉ của a và b
+    hoanDoi(&a, &b);
+
+    printf("Sau khi hoan doi: a = %d, b = %d\n", a, b);
+
+    return 0;
+}
