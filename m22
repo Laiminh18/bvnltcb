@@ -1,0 +1,56 @@
+#include <stdio.h>
+
+#define ROWS 3
+#define COLS 3
+
+int main() {
+    int matrix1[ROWS][COLS] = {
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9}
+    };
+
+    int matrix2[ROWS][COLS] = {
+        {9, 8, 7},
+        {6, 5, 4},
+        {3, 2, 1}
+    };
+
+    int sumMatrix[ROWS][COLS];
+
+    // Tính tổng hai ma trận
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            sumMatrix[i][j] = matrix1[i][j] + matrix2[i][j];
+        }
+    }
+
+    // In ma trận thứ nhất
+    printf("Ma tran 1:\n");
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            printf("%d\t", matrix1[i][j]);
+        }
+        printf("\n");
+    }
+
+    // In ma trận thứ hai
+    printf("\nMa tran 2:\n");
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            printf("%d\t", matrix2[i][j]);
+        }
+        printf("\n");
+    }
+
+    // In ma trận tổng
+    printf("\nTong cua hai ma tran:\n");
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            printf("%d\t", sumMatrix[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
