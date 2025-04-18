@@ -1,0 +1,44 @@
+#include <stdio.h>
+
+#define ROWS 3
+#define COLS 3
+
+int main() {
+    // Trường hợp 1: Khai báo và gán giá trị trực tiếp
+    int matrix1[ROWS][COLS] = {
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9}
+    };
+
+    printf("Truong hop 1: Mang sau khi khai bao va gan gia tri truc tiep:\n");
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            printf("%d\t", matrix1[i][j]);
+        }
+        printf("\n");
+    }
+
+    printf("\n-------------------------\n");
+
+    // Trường hợp 2: Khai báo mảng và nhập giá trị từ bàn phím
+    int matrix2[ROWS][COLS];
+
+    printf("Truong hop 2: Nhap gia tri cho mang %dx%d tu ban phim:\n", ROWS, COLS);
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            printf("Phan tu [%d][%d]: ", i, j);
+            scanf("%d", &matrix2[i][j]);
+        }
+    }
+
+    printf("\nMang sau khi nhap tu ban phim:\n");
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            printf("%d\t", matrix2[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
