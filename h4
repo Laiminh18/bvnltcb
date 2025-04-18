@@ -1,0 +1,151 @@
+#include <stdio.h>
+#include <stdlib.h> // Cho hàm malloc và free
+
+// Hàm nhập ma trận
+void nhapMaTran(int **maTran, int hang, int cot) {
+  printf("Nhap cac phan tu cua ma tran:\n");
+  for (int i = 0; i < hang; i++) {
+    for (int j = 0; j < cot; j++) {
+      printf("Phan tu [%d][%d]: ", i, j);
+      scanf("%d", &maTran[i][j]);
+    }
+  }
+}
+
+// Hàm in ma trận
+void inMaTran(int **maTran, int hang, int cot) {
+  printf("Ma tran:\n");
+  for (int i = 0; i < hang; i++) {
+    for (int j = 0; j < cot; j++) {
+      printf("%d\t", maTran[i][j]);
+    }
+    printf("\n");
+  }
+}
+
+// Hàm tính tổng hai ma trận
+int **tinhTongMaTran(int **maTran1, int **maTran2, int hang, int cot) {
+  int **maTranTong = (int **)malloc(hang * sizeof(int *));
+  if (maTranTong == NULL) {
+    printf("Loi cap phat bo nho cho ma tran tong.\n");
+    exit(1);
+  }
+  for (int i = 0; i < hang; i++) {
+    maTranTong[i] = (int *)malloc(cot * sizeof(int));
+    if (maTranTong[i] == NULL) {
+      printf("Loi cap phat bo nho cho hang %d cua ma tran tong.\n", i);
+      // Giải phóng bộ nhớ đã cấp phát trước đó
+      for (int k = 0; k < i; k++) {
+        free(maTranTong[k]);
+      }
+      free(maTranTong);
+      exit(1);
+    }
+    for (int j = 0; j < cot; j++) {
+      maTranTong[i][j] = maTran1[i][j] + maTran2[i][j];
+    }
+  }
+  return maTranTong;
+}
+
+// Hàm tính tích hai ma trận
+int **tinhTichMaTran(int **maTran1, int hang1, int cot1, int **maTran2, int hang2, int cot2) {
+  if (cot1 != hang2) {
+    printf("Khong the nhan hai ma tran nay. So cot cua ma tran 1 phai bang so hang cua ma tran 2.\n");
+    return NULL;
+  }
+
+  int **maTranTich = (int **)malloc(hang1 * sizeof(int *));
+  if (maTranTich == NULL) {
+    printf("Loi cap phat bo nho cho ma tran tich.\n");
+    exit(1);
+  }
+  for (int i = 0; i < hang1; i++) {
+    maTranTich[i] = (int *)malloc(cot2 * sizeof(int));
+    if (maTranTich[i] == NULL) {
+      printf("Loi cap phat bo nho cho hang %d cua ma tran tich.\n", i);
+      // Giải phóng bộ nhớ đã cấp phát trước đó
+      for (int k = 0; k < i; k++) {
+        free(maTranTich[k]);
+      }
+      free(maTranTich);
+      exit(1);
+    }
+    for (int j = 0; j < cot2; j++) {
+      maTranTich[i][j] = 0;
+      for (int k = 0; k < cot1; k++) {
+        maTranTich[i][j] += maTran1[i][k] * maTran2[k][j];
+      }
+    }
+  }
+  return maTranTich;
+}
+
+int main() {
+  int hang1, cot1, hang2, cot2;
+  int **maTran1, **maTran2, **maTranTong, **maTranTich;
+
+  // Nhập ma trận thứ nhất
+  printf("Nhap so hang cho ma tran 1: ");
+  scanf("%d", &hang1);
+  printf("Nhap so cot cho ma tran 1: ");
+  scanf("%d", &cot1);
+
+  maTran1 = (int **)malloc(hang1 * sizeof(int *));
+  for (int i = 0; i < hang1; i++) {
+    maTran1[i] = (int *)malloc(cot1 * sizeof(int));
+  }
+  nhapMaTran(maTran1, hang1, cot1);
+  inMaTran(maTran1, hang1, cot1);
+
+  // Nhập ma trận thứ hai
+  printf("\nNhap so hang cho ma tran 2: ");
+  scanf("%d", &hang2);
+  printf("Nhap so cot cho ma tran 2: ");
+  scanf("%d", &cot2);
+
+  maTran2 = (int **)malloc(hang2 * sizeof(int *));
+  for (int i = 0; i < hang2; i++) {
+    maTran2[i] = (int *)malloc(cot2 * sizeof(int));
+  }
+  nhapMaTran(maTran2, hang2, cot2);
+  inMaTran(maTran2, hang2, cot2);
+
+  // Tính tổng hai ma trận (nếu cùng kích thước)
+  if (hang1 == hang2 && cot1 == cot2) {
+    maTranTong = tinhTongMaTran(maTran1, maTran2, hang1, cot1);
+    printf("\nTong hai ma tran:\n");
+    inMaTran(maTranTong, hang1, cot1);
+    // Giải phóng bộ nhớ cho maTranTong
+    for (int i = 0; i < hang1; i++) {
+      free(maTranTong[i]);
+    }
+    free(maTranTong);
+  } else {
+    printf("\nKhong the tinh tong hai ma tran vi kich thuoc khong tuong ung.\n");
+  }
+
+  // Tính tích hai ma trận (nếu số cột của ma trận 1 bằng số hàng của ma trận 2)
+  maTranTich = tinhTichMaTran(maTran1, hang1, cot1, maTran2, hang2, cot2);
+  if (maTranTich != NULL) {
+    printf("\nTich hai ma tran:\n");
+    inMaTran(maTranTich, hang1, cot2);
+    // Giải phóng bộ nhớ cho maTranTich
+    for (int i = 0; i < hang1; i++) {
+      free(maTranTich[i]);
+    }
+    free(maTranTich);
+  }
+
+  // Giải phóng bộ nhớ cho maTran1 và maTran2
+  for (int i = 0; i < hang1; i++) {
+    free(maTran1[i]);
+  }
+  free(maTran1);
+  for (int i = 0; i < hang2; i++) {
+    free(maTran2[i]);
+  }
+  free(maTran2);
+
+  return 0;
+}
