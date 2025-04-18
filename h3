@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+// Hàm đệ quy tính số Fibonacci thứ n
+int fibonacciDeQuy(int n) {
+  // Trường hợp cơ sở
+  if (n == 0) {
+    return 0;
+  } else if (n == 1) {
+    return 1;
+  } else if (n < 0) {
+    printf("Khong the tinh so Fibonacci cho chi so am.\n");
+    return -1; // Hoặc một giá trị báo lỗi khác
+  } else {
+    // Bước đệ quy
+    return fibonacciDeQuy(n - 1) + fibonacciDeQuy(n - 2);
+  }
+}
+
+int main() {
+  int n;
+
+  printf("Nhap chi so n de tinh so Fibonacci: ");
+  scanf("%d", &n);
+
+  int ketQua = fibonacciDeQuy(n);
+
+  if (ketQua != -1) {
+    printf("So Fibonacci thu %d la: %d\n", n, ketQua);
+  }
+
+  return 0;
+}
