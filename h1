@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <math.h> // Thư viện chứa hàm pow
+
+// Hàm tính giá trị của x mũ y
+double tinhLuyThua(double x, int y) {
+  return pow(x, y);
+}
+
+int main() {
+  double coSo;
+  int soMu;
+
+  printf("Nhap co so (x): ");
+  scanf("%lf", &coSo);
+
+  printf("Nhap so mu (y): ");
+  scanf("%d", &soMu);
+
+  double ketQua = tinhLuyThua(coSo, soMu);
+
+  printf("%.2lf mu %d la: %.2lf\n", coSo, soMu, ketQua);
+
+  return 0;
+}
