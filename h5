@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include <stdlib.h> // Cho hàm malloc và free
+
+// Hàm chuyển đổi số nguyên dương từ hệ thập phân sang hệ cơ số 'base'
+char* chuyenDoiCoSo(int num, int base) {
+  if (num == 0) {
+    char *result = (char*)malloc(2 * sizeof(char));
+    result[0] = '0';
+    result[1] = '\0';
+    return result;
+  }
+
+  int temp = num;
+  int count = 0;
+  while (temp > 0) {
+    temp /= base;
+    count++;
+  }
+
+  char *result = (char*)malloc((count + 1) * sizeof(char));
+  if (result == NULL) {
+    printf("Loi cap phat bo nho.\n");
+    return NULL;
+  }
+  result[count] = '\0';
+
+  int i = count - 1;
+  while (num > 0) {
+    int remainder = num % base;
+    if (remainder < 10) {
+      result[i--] = remainder + '0';
+    } else {
+      result[i--] = remainder - 10 + 'A';
+    }
+    num /= base;
+  }
+  return result;
+}
+
+int main() {
+  int decimalNum;
+
+  printf("Nhap mot so nguyen duong o he thap phan: ");
+  scanf("%d", &decimalNum);
+
+  if (decimalNum < 0) {
+    printf("Vui long nhap so nguyen duong.\n");
+    return 1;
+  }
+
+  char *binary = chuyenDoiCoSo(decimalNum, 2);
+  char *octal = chuyenDoiCoSo(decimalNum, 8);
+  char *hexadecimal = chuyenDoiCoSo(decimalNum, 16);
+
+  printf("So %d o he co so:\n", decimalNum);
+  printf("He nhi phan (co so 2): %s\n", binary);
+  printf("He bat phan (co so 8): %s\n", octal);
+  printf("He thap luc phan (co so 16): %s\n", hexadecimal);
+
+  // Giải phóng bộ nhớ đã cấp phát
+  free(binary);
+  free(octal);
+  free(hexadecimal);
+
+  return 0;
+}
