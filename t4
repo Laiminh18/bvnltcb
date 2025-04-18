@@ -1,0 +1,68 @@
+#include <stdio.h>
+#include <stdlib.h> // Để sử dụng hàm malloc và free
+
+// Hàm để nhập các phần tử của mảng từ người dùng
+void nhapMang(int *arr, int size) {
+    printf("Nhap %d phan tu cho mang:\n", size);
+    for (int i = 0; i < size; i++) {
+        printf("Phan tu thu %d: ", i + 1);
+        scanf("%d", &arr[i]);
+    }
+}
+
+// Hàm để in các phần tử của mảng
+void inMang(int *arr, int size) {
+    printf("Cac phan tu cua mang la: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+// Hàm sắp xếp mảng theo thứ tự tăng dần (Bubble Sort)
+void sapXepTangDan(int *arr, int size) {
+    for (int i = 0; i < size - 1; i++) {
+        // Lặp qua các phần tử từ đầu đến size - i - 1
+        for (int j = 0; j < size - i - 1; j++) {
+            // Nếu phần tử hiện tại lớn hơn phần tử kế tiếp, hoán đổi chúng
+            if (*(arr + j) > *(arr + j + 1)) {
+                int temp = *(arr + j);
+                *(arr + j) = *(arr + j + 1);
+                *(arr + j + 1) = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    int n;
+
+    printf("Nhap so luong phan tu cua mang: ");
+    scanf("%d", &n);
+
+    // Cấp phát bộ nhớ động cho mảng
+    int *mang = (int *)malloc(n * sizeof(int));
+
+    // Kiểm tra xem cấp phát bộ nhớ có thành công không
+    if (mang == NULL) {
+        printf("Khong the cap phat bo nho.\n");
+        return 1; // Trả về mã lỗi
+    }
+
+    // Nhập các phần tử của mảng
+    nhapMang(mang, n);
+
+    printf("Mang truoc khi sap xep:\n");
+    inMang(mang, n);
+
+    // Sắp xếp mảng theo thứ tự tăng dần
+    sapXepTangDan(mang, n);
+
+    printf("Mang sau khi sap xep tang dan:\n");
+    inMang(mang, n);
+
+    // Giải phóng bộ nhớ đã cấp phát
+    free(mang);
+
+    return 0;
+}
