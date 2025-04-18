@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n;
+    int *mangSoNguyen;
+    int x;
+    int count = 0;
+
+    // Nhập kích thước của mảng
+    printf("Nhap so luong phan tu cua mang: ");
+    scanf("%d", &n);
+
+    // Cấp phát động bộ nhớ cho mảng
+    mangSoNguyen = (int *)malloc(n * sizeof(int));
+
+    // Kiểm tra cấp phát bộ nhớ thành công hay không
+    if (mangSoNguyen == NULL) {
+        printf("Loi cap phat bo nho!\n");
+        return 1;
+    }
+
+    // Nhập các phần tử của mảng
+    printf("Nhap cac phan tu cua mang:\n");
+    for (int i = 0; i < n; i++) {
+        printf("Phan tu thu %d: ", i + 1);
+        scanf("%d", &mangSoNguyen[i]);
+    }
+
+    // Nhập giá trị x cần tìm
+    printf("\nNhap gia tri x can tim: ");
+    scanf("%d", &x);
+
+    // Đếm số lần xuất hiện của x trong mảng
+    for (int i = 0; i < n; i++) {
+        if (mangSoNguyen[i] == x) {
+            count++;
+        }
+    }
+
+    // In kết quả
+    printf("\n--- KET QUA ---\n");
+    printf("Phan tu %d xuat hien %d lan trong mang.\n", x, count);
+
+    // Giải phóng bộ nhớ
+    free(mangSoNguyen);
+
+    return 0;
+}
