@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n;
+    int *mangSoNguyen;
+
+    // Nhập kích thước của mảng
+    printf("Nhap so luong phan tu cua mang: ");
+    scanf("%d", &n);
+
+    // Cấp phát động bộ nhớ cho mảng
+    mangSoNguyen = (int *)malloc(n * sizeof(int));
+
+    // Kiểm tra cấp phát bộ nhớ thành công hay không
+    if (mangSoNguyen == NULL) {
+        printf("Loi cap phat bo nho!\n");
+        return 1;
+    }
+
+    // Nhập các phần tử của mảng
+    printf("Nhap cac phan tu cua mang:\n");
+    for (int i = 0; i < n; i++) {
+        printf("Phan tu thu %d: ", i + 1);
+        scanf("%d", &mangSoNguyen[i]);
+    }
+
+    // Thay thế các phần tử âm bằng 0
+    for (int i = 0; i < n; i++) {
+        if (mangSoNguyen[i] < 0) {
+            mangSoNguyen[i] = 0;
+        }
+    }
+
+    // In mảng sau khi thay thế
+    printf("\nMang sau khi thay the cac phan tu am bang 0:\n");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", mangSoNguyen[i]);
+    }
+    printf("\n");
+
+    // Giải phóng bộ nhớ
+    free(mangSoNguyen);
+
+    return 0;
+}
